@@ -1,7 +1,4 @@
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,24 +10,26 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
+	private static final long serialVersionUID = 1L;
 	public static String[] PanelNames = {"fp","mp","statistic","setting"};
-	MoniterPanel mp = new MoniterPanel(this, PanelNames[1]);
-	FirstPanel fp = new FirstPanel(this,PanelNames[0]);
+	MoniterPanel mp;
+	FirstPanel fp;
     // フレームサイズ
 	static int w;
     static int h;
 
 	public MainFrame(){
+		// 使用しているモニタのサイズに合わせてパネルサイズを求めます
+	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    w = screenSize.width;
+	    h = screenSize.height;
+	    
+		mp = new MoniterPanel(this, PanelNames[1]);
+		fp = new FirstPanel(this,PanelNames[0]);
+		
 		// 初期画面で写すパネルをセットする．
-		this.add(fp);
-		fp.setVisible(true);
-		this.add(mp);
-		mp.setVisible(false);
-		// 画面の解像度からサイズを求める
-		/*GraphicsEnvironment env = GraphicsEnvironment
-				.getLocalGraphicsEnvironment();
-		Rectangle rect = env.getMaximumWindowBounds();
-		setBounds(rect);*/
+		this.add(fp);fp.setVisible(true);
+		this.add(mp);mp.setVisible(false);
 		this.setSize(w,h);
 
 		// メニューの実装
@@ -55,21 +54,15 @@ public class MainFrame extends JFrame{
 		menu1.add(menuitem2);
 		menu1.add(menuitem3);
 		this.setJMenuBar(menubar);
-		
 	}
+	
 	public static void main(String[] args){
-		// 使用しているモニタのサイズに合わせてパネルサイズを求めます
-	    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	    w = screenSize.width;
-	    h = screenSize.height;
+		
 		MainFrame mf = new MainFrame();
 		mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		mf.setVisible(true);
 	}
-	
-	
-	
-	
+
 	// 自身を消して次を呼ぶ
 	// 各パネルから呼び出される　（切り替えもとのパネル，切り替えるパネル名）
 	public void PanelChange(JPanel jp, String str) {
@@ -85,6 +78,6 @@ public class MainFrame extends JFrame{
 		if (str == PanelNames[1])
 			mp.setVisible(true);
 	}
-	
+
 
 }

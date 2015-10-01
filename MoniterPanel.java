@@ -21,47 +21,24 @@ public class MoniterPanel extends JPanel {
 	ProcWin a;
 	String str;
 	MainFrame mf;
-	
+
 	public MoniterPanel(MainFrame m, String s){
 		mf = m;
 		str = s;
-		
+
 		this.setName("mp");
         setSize(MainFrame.w, MainFrame.h);
-        
+
         setBackground(Color.WHITE);
 		PApplet processing = new ProcWin();
 		// PAppletを埋め込む
 		this.add(processing);
 		processing.init();
-		
-		/* メニューの追加 
-		JMenuBar menubar = new JMenuBar();
-		JMenu menu1 = new JMenu("Menu");
-		menubar.add(menu1);
-		JMenuItem menuitem1 = new JMenuItem("Re-Start");
-	    menuitem1.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                pc(mf.PanelNames[0]);
-            }
-        });
-		JMenuItem menuitem2 = new JMenuItem("Statistics");
-	    JMenuItem menuitem3 = new JMenuItem("Close");
-	    menuitem3.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-               System.exit(0);
-            }
-        });
-	    menu1.add(menuitem1);
-	    menu1.add(menuitem2);
-	    menu1.add(menuitem3);
-
-	    m.setJMenuBar(menubar);
-	    */
 	}
+
 	public void pc(String str){
 		this.setVisible(false);
         mf.PanelChange((JPanel)this, str);
     }
 }
-		
+

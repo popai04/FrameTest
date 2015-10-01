@@ -12,10 +12,9 @@ public class ProcWin extends PApplet{
 
 	public void  draw(){
 		background(0);
-		  //ellipse(width/2, height/2, mouseX, mouseY);
+		  ellipse(width/2, height/2, mouseX, mouseY);
 		  textSize(24);
 		  text("this panel is Procecssing", 800, 500);
-		  
 	}
 
 }
